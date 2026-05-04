@@ -2,7 +2,13 @@
 // Промокоды защищены на сервере, клиент получает только один код в день
 // БЕЗ базы данных - вычисляется по дате
 
-import promoCodes from './promo_codes.json';
+import { readFileSync } from 'fs';
+import { join } from 'path';
+
+// Читаем промокоды из файла
+const promoCodes = JSON.parse(
+  readFileSync(join(process.cwd(), 'api', 'promo_codes.json'), 'utf-8')
+);
 
 // Стартовая дата: 4 мая 2026 = промокод #0
 const START_DATE = new Date('2026-05-04T00:00:00+03:00'); // Московское время
