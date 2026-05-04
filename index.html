@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StandMel - Приватный сервер Standoff 2</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">StandMel</div>
+            <div class="nav-links">
+                <a href="#home" class="nav-link active">Главная</a>
+                <a href="#promo" class="nav-link">Ежедневный промокод</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Notification Container -->
+    <div id="notification" class="notification">
+        <i class="fas fa-check-circle"></i>
+        <span id="notification-text">Промокод скопирован!</span>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="glitch" data-text="StandMel">StandMel</h1>
+                <p class="subtitle">Приватный сервер Standoff 2</p>
+                <p class="description">Уникальный игровой опыт с эксклюзивными возможностями</p>
+                
+                <div class="download-buttons">
+                    <a href="https://example.com" class="download-btn ios">
+                        <i class="fab fa-apple"></i>
+                        <div class="btn-text">
+                            <span class="small">Скачать для</span>
+                            <span class="large">iOS</span>
+                        </div>
+                    </a>
+                    <a href="https://example.com" class="download-btn android">
+                        <i class="fab fa-android"></i>
+                        <div class="btn-text">
+                            <span class="small">Скачать для</span>
+                            <span class="large">Android</span>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="scroll-indicator">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Daily Promo Section -->
+    <section class="promo-section" id="promo">
+        <div class="container">
+            <h2 class="section-title">Ежедневный промокод</h2>
+            <p class="section-subtitle">Получай бонусы каждый день!</p>
+            
+            <div class="promo-container">
+                <div class="moscow-time-indicator">
+                    <i class="fas fa-clock"></i>
+                    <span>Работает по московскому времени (UTC+3)</span>
+                </div>
+                
+                <div class="timer-container">
+                    <div class="timer-label">Следующий промокод через:</div>
+                    <div class="timer" id="timer">
+                        <div class="timer-block">
+                            <span id="hours">00</span>
+                            <span class="timer-label-small">часов</span>
+                        </div>
+                        <div class="timer-separator">:</div>
+                        <div class="timer-block">
+                            <span id="minutes">00</span>
+                            <span class="timer-label-small">минут</span>
+                        </div>
+                        <div class="timer-separator">:</div>
+                        <div class="timer-block">
+                            <span id="seconds">00</span>
+                            <span class="timer-label-small">секунд</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="promo-card" id="promoCard">
+                    <div class="promo-label">Промокод дня</div>
+                    <div class="promo-code-wrapper">
+                        <div class="promo-code blurred" id="promoCode">
+                            XXXXXXXXXXXX
+                        </div>
+                    </div>
+                    <button class="reveal-btn" id="revealBtn">
+                        <i class="fas fa-gift"></i>
+                        Получить промокод
+                    </button>
+                    <div class="promo-hint">Нажми, чтобы скопировать</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
