@@ -90,9 +90,13 @@ async function updateTimer() {
     const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
     
-    document.getElementById('hours').textContent = String(hours).padStart(2, '0');
-    document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
-    document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+    const hoursEl = document.getElementById('hours');
+    const minutesEl = document.getElementById('minutes');
+    const secondsEl = document.getElementById('seconds');
+    
+    if (hoursEl) hoursEl.textContent = String(hours).padStart(2, '0');
+    if (minutesEl) minutesEl.textContent = String(minutes).padStart(2, '0');
+    if (secondsEl) secondsEl.textContent = String(seconds).padStart(2, '0');
 }
 
 // Update timer every second
@@ -103,17 +107,22 @@ updateTimer();
 const promoCodeElement = document.getElementById('promoCode');
 const revealBtn = document.getElementById('revealBtn');
 const promoCard = document.getElementById('promoCard');
-const promoHint = document.querySelector('.promo-hint');
 let isRevealed = false;
 let currentPromo = '';
 
-revealBtn.addEventListener('click', () => {
-    if (!isRevealed) {
-        revealPromoCode();
-    }
-});
+if (revealBtn) {
+    revealBtn.addEventListener('click', () => {
+        if (!isRevealed) {
+            revealPromoCode();
+            const todayMoscow = db.getMoscowDateString();
+            sessionStorage.setItem('promoRevealedToday', todayMoscow);
+        }
+    });
+}
 
 function revealPromoCode() {
+    if (!promoCodeElement || !revealBtn) return;
+    
     isRevealed = true;
     
     // Hide button
@@ -142,7 +151,7 @@ function revealPromoCode() {
         const interval = setInterval(() => {
             promoCodeElement.textContent = currentPromo
                 .split('')
-                .map((char, index) => {
+                .map((_, index) => {
                     if (index < iterations) {
                         return currentPromo[index];
                     }
@@ -157,7 +166,6 @@ function revealPromoCode() {
                 promoCodeElement.textContent = currentPromo;
                 promoCodeElement.classList.remove('generating');
                 promoCodeElement.classList.add('revealed');
-                promoHint.classList.add('visible');
                 
                 // Make it clickable
                 promoCodeElement.style.cursor = 'pointer';
@@ -172,14 +180,34 @@ function revealPromoCode() {
 }
 
 // Copy to clipboard functionality
-promoCodeElement.addEventListener('click', () => {
-    if (isRevealed && promoCodeElement.classList.contains('revealed')) {
-        copyToClipboard(currentPromo);
-    }
-});
+if (promoCodeElement) {
+    promoCodeElement.addEventListener('click', () => {
+        if (isRevealed && promoCodeElement.classList.contains('revealed')) {
+            copyToClipboard(currentPromo);
+        }
+    });
+}
 
 function copyToClipboard(text) {
-    // Create temporary textarea
+    // Use modern clipboard API if available
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(() => {
+            showNotification('Промокод скопирован!');
+            if (promoCard) {
+                promoCard.classList.add('copied');
+                setTimeout(() => {
+                    promoCard.classList.remove('copied');
+                }, 2000);
+            }
+        }).catch(() => {
+            fallbackCopy(text);
+        });
+    } else {
+        fallbackCopy(text);
+    }
+}
+
+function fallbackCopy(text) {
     const textarea = document.createElement('textarea');
     textarea.value = text;
     textarea.style.position = 'fixed';
@@ -191,11 +219,12 @@ function copyToClipboard(text) {
         document.execCommand('copy');
         showNotification('Промокод скопирован!');
         
-        // Add copied effect to card
-        promoCard.classList.add('copied');
-        setTimeout(() => {
-            promoCard.classList.remove('copied');
-        }, 2000);
+        if (promoCard) {
+            promoCard.classList.add('copied');
+            setTimeout(() => {
+                promoCard.classList.remove('copied');
+            }, 2000);
+        }
     } catch (err) {
         console.error('Failed to copy:', err);
     }
@@ -207,81 +236,129 @@ function showNotification(message) {
     const notification = document.getElementById('notification');
     const notificationText = document.getElementById('notification-text');
     
-    notificationText.textContent = message;
-    notification.classList.add('show');
-    
-    setTimeout(() => {
-        notification.classList.remove('show');
-    }, 3000);
+    if (notification && notificationText) {
+        notificationText.textContent = message;
+        notification.classList.add('show');
+        
+        setTimeout(() => {
+            notification.classList.remove('show');
+        }, 3000);
+    }
 }
 
-// Smooth scroll for scroll indicator
-document.querySelector('.scroll-indicator').addEventListener('click', () => {
-    document.querySelector('.promo-section').scrollIntoView({ 
-        behavior: 'smooth' 
-    });
-});
-
-// Navigation smooth scroll
-document.querySelectorAll('.nav-link').forEach(link => {
-    link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const targetId = link.getAttribute('href');
-        const targetSection = document.querySelector(targetId);
-        
-        if (targetSection) {
-            targetSection.scrollIntoView({ 
-                behavior: 'smooth' 
-            });
-            
-            // Update active link
-            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-            link.classList.add('active');
-        }
-    });
-});
-
-// Update active nav link on scroll
-window.addEventListener('scroll', () => {
-    const sections = document.querySelectorAll('section[id]');
-    const scrollY = window.pageYOffset;
+// Page Navigation with animations
+function showPage(pageId) {
+    const heroSection = document.querySelector('.min-h-screen');
+    const promoPage = document.querySelector('.promo-page');
     
-    sections.forEach(section => {
-        const sectionHeight = section.offsetHeight;
-        const sectionTop = section.offsetTop - 100;
-        const sectionId = section.getAttribute('id');
-        
-        if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${sectionId}`) {
-                    link.classList.add('active');
-                }
-            });
-        }
-    });
-});
-
-// Check if promo was already revealed today
-window.addEventListener('load', () => {
-    const revealedToday = sessionStorage.getItem('promoRevealedToday');
-    const todayMoscow = db.getMoscowDateString();
+    if (!heroSection || !promoPage) return;
     
-    if (revealedToday === todayMoscow) {
-        // Auto-reveal if already revealed in this session
+    if (pageId === 'promo') {
+        // Animate out hero, animate in promo
+        heroSection.classList.add('page-exit');
+        promoPage.classList.add('page-enter');
+        
         setTimeout(() => {
-            revealPromoCode();
-        }, 500);
+            heroSection.style.display = 'none';
+            heroSection.classList.remove('page-exit');
+            
+            promoPage.style.display = 'block';
+            
+            // Trigger reflow
+            promoPage.offsetHeight;
+            
+            promoPage.classList.remove('page-enter');
+            promoPage.classList.add('page-active');
+        }, 50);
+    } else {
+        // Animate out promo, animate in hero
+        promoPage.classList.add('page-exit');
+        heroSection.classList.add('page-enter');
+        
+        setTimeout(() => {
+            promoPage.style.display = 'none';
+            promoPage.classList.remove('page-exit', 'page-active');
+            
+            heroSection.style.display = 'block';
+            
+            // Trigger reflow
+            heroSection.offsetHeight;
+            
+            heroSection.classList.remove('page-enter');
+            heroSection.classList.add('page-active');
+        }, 50);
     }
+}
+
+// Handle hash navigation
+function handleNavigation() {
+    const hash = window.location.hash.substring(1);
+    
+    if (hash === 'promo') {
+        showPage('promo');
+    } else if (hash === 'home' || hash === '') {
+        showPage('home');
+    }
+}
+
+// Listen to hash changes
+window.addEventListener('hashchange', handleNavigation);
+
+// Initial page load with blur animation
+window.addEventListener('load', () => {
+    // Add loading class to body
+    document.body.classList.add('loading');
+    
+    // Remove loading class after animation
+    setTimeout(() => {
+        document.body.classList.remove('loading');
+    }, 100);
+    
+    // Handle initial navigation after blur animation
+    setTimeout(() => {
+        handleNavigation();
+        
+        // Check if promo was already revealed today
+        const revealedToday = sessionStorage.getItem('promoRevealedToday');
+        const todayMoscow = db.getMoscowDateString();
+        
+        if (revealedToday === todayMoscow && window.location.hash === '#promo') {
+            // Auto-reveal if already revealed in this session
+            setTimeout(() => {
+                revealPromoCode();
+            }, 500);
+        }
+    }, 900);
 });
 
-// Save reveal state (с московским временем)
-revealBtn.addEventListener('click', () => {
-    const todayMoscow = db.getMoscowDateString();
-    sessionStorage.setItem('promoRevealedToday', todayMoscow);
+// Smooth scroll for navigation links
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const href = this.getAttribute('href');
+            const targetId = href.substring(1);
+            
+            // Check if it's a page navigation (promo, home)
+            if (targetId === 'promo' || targetId === 'home') {
+                e.preventDefault();
+                window.location.hash = targetId;
+                return;
+            }
+            
+            // For other anchors, check if target exists in current page
+            const target = document.querySelector(href);
+            if (target) {
+                e.preventDefault();
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
 });
 
-// Display Moscow time info (optional - можно показать пользователю)
+// Display Moscow time info
 console.log('🕐 Сайт работает по московскому времени (UTC+3)');
 console.log('📅 Текущая дата (Москва):', db.getMoscowDateString());
 console.log('🔒 Промокоды защищены на сервере - клиент получает только один код в день');
