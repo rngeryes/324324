@@ -3,140 +3,387 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StandMel - Приватный сервер Standoff 2</title>
+    <title>Standmel — Приватный сервер Standoff 2</title>
+    <meta name="description" content="Standmel — приватный сервер Standoff 2 с уникальными режимами и большим сообществом.">
+    <meta name="author" content="Standmel">
+    <meta property="og:title" content="Standmel — Standoff 2">
+    <meta property="og:description" content="Приватный сервер Standoff 2 с уникальными режимами и большим сообществом.">
+    <meta property="og:type" content="website">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <div class="nav-brand">StandMel</div>
-            <div class="nav-links">
-                <a href="#home" class="nav-link active">Главная</a>
-                <a href="#promo" class="nav-link">Ежедневный промокод</a>
-                <a href="#donate" class="nav-link">Донат</a>
-            </div>
-        </div>
-    </nav>
+    <!-- Notification -->
+    <div role="region" aria-label="Notifications" tabindex="-1" style="pointer-events: none;">
+        <ol tabindex="-1" class="toaster"></ol>
+    </div>
 
-    <!-- Notification Container -->
-    <div id="notification" class="notification">
+    <div class="min-h-screen bg-background">
+        <!-- Fixed Header -->
+        <div class="fixed-header-wrapper">
+            <header class="header-glass">
+                <div class="header-content">
+                    <a href="/" class="logo-link">
+                        <img src="logo-DOrKR40I.webp" alt="Standmel" class="logo-img">
+                    </a>
+                    <div class="header-actions">
+                        <a href="https://t.me/standmel" target="_blank" rel="noopener noreferrer" class="telegram-icon" title="Наш Telegram">
+                            <svg width="27" height="24" viewBox="0 0 27 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M0.596425 10.7665L25.6576 0.0778941C26.3569 -0.220378 27.1052 0.381189 26.9878 1.14733L23.6143 23.1608C23.5047 23.876 22.7078 24.234 22.1193 23.8324L11 17C10.4737 16.6409 10.4191 15.8703 10.8893 15.4372L18.7761 7.95223C18.9167 7.82274 18.7533 7.59682 18.5913 7.69665L7.48812 14.5387C7.2473 14.6871 6.95541 14.7211 6.68815 14.632L0.669052 12.6254C-0.186011 12.3404 -0.233669 11.1205 0.596425 10.7665Z" fill="white"/>
+                            </svg>
+                        </a>
+                        <a href="#download" class="btn-start-play">Начать играть</a>
+                    </div>
+                </div>
+            </header>
+        </div>
+
+        <!-- Main Content Wrapper -->
+        <div class="page-wrapper">
+            <!-- Hero Section -->
+            <section class="hero-section" id="home">
+                <div class="hero-bg-image"></div>
+                <div class="hero-character"></div>
+                <div class="hero-gradient-overlay"></div>
+                
+                <div class="hero-container">
+                    <div class="hero-content-wrapper">
+                        <div class="hero-badge">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="badge-icon">
+                                <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path>
+                            </svg>
+                            НОВОЕ ОБНОВЛЕНИЕ 0.15.4 F1
+                        </div>
+
+                        <h1 class="hero-title">
+                            <span class="title-white">НАЧНИ ИГРАТЬ  </span>
+                            <span class="title-gradient">СЕЙЧАС</span>
+                        </h1>
+
+                        <p class="hero-subtitle">
+                            Стань счастивым игроком в <span class="highlight-text">STANDMEL</span>
+                        </p>
+
+                        <p class="hero-description">
+                            Приватный сервер Standoff 2 с уникальными режимами, системой кланов и постоянными обновлениями. Присоединяйся к большому сообществу игроков.
+                        </p>
+
+                        <div class="hero-buttons">
+                            <a class="btn-primary-large" href="#download">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="btn-icon">
+                                    <polygon points="6 3 20 12 6 21 6 3"></polygon>
+                                </svg>
+                                НАЧАТЬ ИГРАТЬ
+                            </a>
+                            <div class="hero-secondary-buttons">
+                                <a class="btn-secondary" href="#promo">Промокод</a>
+                                <a class="btn-secondary" href="#about">Узнать больше</a>
+                            </div>
+                        </div>
+
+                        <div class="hero-stats-badge">
+                            <span class="status-indicator"></span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="stats-icon">
+                                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg>
+                            <span>Сейчас играют: <span class="stats-number">140</span> игроков</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-footer">
+                    <div class="footer-links">
+                        <a href="mailto:support@standmel.games" class="footer-link">support@standmel.games</a>
+                        <span class="footer-separator">•</span>
+                        <a href="#terms" class="footer-link">Условия соглашения</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About Section -->
+            <section class="about-section" id="about">
+                <div class="about-container">
+                    <div class="about-header">
+                        <div class="section-badge">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M12 16v-4"></path>
+                                <path d="M12 8h.01"></path>
+                            </svg>
+                            О СЕРВЕРЕ
+                        </div>
+                        <h2 class="section-title">
+                            Почему <span class="title-gradient">Standmel</span>?
+                        </h2>
+                        <p class="section-description">
+                            Мы создали лучший приватный сервер Standoff 2 с уникальными возможностями
+                        </p>
+                    </div>
+
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path>
+                                </svg>
+                            </div>
+                            <h3 class="feature-title">Безопасность</h3>
+                            <p class="feature-description">Защита от читеров и стабильная работа серверов 24/7</p>
+                        </div>
+
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="9" cy="7" r="4"></circle>
+                                    <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                </svg>
+                            </div>
+                            <h3 class="feature-title">Сообщество</h3>
+                            <p class="feature-description">Более 2000+ активных игроков и дружелюбное комьюнити</p>
+                        </div>
+
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"></path>
+                                    <circle cx="7.5" cy="7.5" r=".5" fill="currentColor"></circle>
+                                </svg>
+                            </div>
+                            <h3 class="feature-title">Промокоды</h3>
+                            <p class="feature-description">Ежедневные промокоды на валюту и эксклюзивные предметы</p>
+                        </div>
+
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                                </svg>
+                            </div>
+                            <h3 class="feature-title">Экономика</h3>
+                            <p class="feature-description">Честная игровая экономика и торговая площадка</p>
+                        </div>
+
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                    <polyline points="7 10 12 15 17 10"></polyline>
+                                    <line x1="12" x2="12" y1="15" y2="3"></line>
+                                </svg>
+                            </div>
+                            <h3 class="feature-title">Обновления</h3>
+                            <p class="feature-description">Регулярные обновления с новым контентом и режимами</p>
+                        </div>
+
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="9" cy="7" r="4"></circle>
+                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                </svg>
+                            </div>
+                            <h3 class="feature-title">Кланы</h3>
+                            <p class="feature-description">Система кланов в разработке</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Download Section -->
+            <section class="download-section" id="download">
+                <div class="download-container">
+                    <div class="download-content">
+                        <div class="section-badge">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="7 10 12 15 17 10"></polyline>
+                                <line x1="12" x2="12" y1="15" y2="3"></line>
+                            </svg>
+                            СКАЧАТЬ
+                        </div>
+                        <h2 class="section-title">
+                            Начни играть <span class="title-gradient">прямо сейчас</span>
+                        </h2>
+                        <p class="section-description">
+                            Скачай клиент для своей платформы и присоединяйся к тысячам игроков
+                        </p>
+
+                        <div class="download-buttons">
+                            <a href="https://drive.usercontent.google.com/download?id=1fZenSq6w1PPG-HyScid8FT-T_GC_up3_&export=download&authuser=0" target="_blank" class="download-btn download-btn-primary">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect width="7" height="18" x="3" y="3" rx="1"></rect>
+                                    <rect width="7" height="7" x="14" y="3" rx="1"></rect>
+                                    <rect width="7" height="7" x="14" y="14" rx="1"></rect>
+                                </svg>
+                                <div class="download-btn-text">
+                                    <span class="download-platform">Android</span>
+                                    <span class="download-label">Скачать APK</span>
+                                </div>
+                            </a>
+
+                            <a href="https://drive.usercontent.google.com/download?id=1nPJ8FJ2-Pw7stzooZBdgqYljXWlqZ99-&export=download&authuser=0" target="_blank" class="download-btn">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3z"></path>
+                                </svg>
+                                <div class="download-btn-text">
+                                    <span class="download-platform">iOS</span>
+                                    <span class="download-label">Скачать IPA</span>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="download-info">
+                            <div class="info-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path>
+                                </svg>
+                                <span>Безопасная установка</span>
+                            </div>
+                            <div class="info-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                    <polyline points="7 10 12 15 17 10"></polyline>
+                                    <line x1="12" x2="12" y1="15" y2="3"></line>
+                                </svg>
+                                <span>Бесплатно навсегда</span>
+                            </div>
+                            <div class="info-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                                    <polyline points="3.29 7 12 12 20.71 7"></polyline>
+                                    <line x1="12" x2="12" y1="22" y2="12"></line>
+                                </svg>
+                                <span>Версия 0.15.4 (F1)</span>
+                            </div>
+                        </div>
+
+                        <p class="download-note">
+                            Нужна помощь с установкой? Напиши в наш <a href="https://t.me/standmel" target="_blank" class="download-link">Telegram</a>
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Promo Page -->
+    <div class="promo-page" id="promo" style="display: none;">
+        <div class="page-wrapper-promo">
+            <div class="fixed-header-wrapper">
+                <header class="header-glass">
+                    <div class="header-content">
+                        <a href="#home" class="logo-link">
+                            <img src="logo-DOrKR40I.webp" alt="Standmel" class="logo-img">
+                        </a>
+                        <div class="header-actions">
+                            <a href="https://t.me/standmel" target="_blank" rel="noopener noreferrer" class="telegram-icon" title="Наш Telegram">
+                                <svg width="27" height="24" viewBox="0 0 27 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M0.596425 10.7665L25.6576 0.0778941C26.3569 -0.220378 27.1052 0.381189 26.9878 1.14733L23.6143 23.1608C23.5047 23.876 22.7078 24.234 22.1193 23.8324L11 17C10.4737 16.6409 10.4191 15.8703 10.8893 15.4372L18.7761 7.95223C18.9167 7.82274 18.7533 7.59682 18.5913 7.69665L7.48812 14.5387C7.2473 14.6871 6.95541 14.7211 6.68815 14.632L0.669052 12.6254C-0.186011 12.3404 -0.233669 11.1205 0.596425 10.7665Z" fill="white"/>
+                                </svg>
+                            </a>
+                            <a href="#download" class="btn-start-play">Начать играть</a>
+                        </div>
+                    </div>
+                </header>
+            </div>
+
+            <main class="promo-main">
+                <div class="promo-bg-blur"></div>
+                
+                <div class="back-btn-wrapper">
+                    <a class="back-btn" href="#home">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m12 19-7-7 7-7"></path>
+                            <path d="M19 12H5"></path>
+                        </svg>
+                        На главную
+                    </a>
+                </div>
+
+                <div class="promo-content">
+                    <div class="promo-badge-tag">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"></path>
+                            <circle cx="7.5" cy="7.5" r=".5" fill="currentColor"></circle>
+                        </svg>
+                        Активный промокод
+                    </div>
+
+                    <h1 class="promo-title">
+                        Промокод <span class="title-gradient">дня</span>
+                    </h1>
+
+                    <p class="promo-subtitle">
+                        Нажми, чтобы показать промокод, затем нажми снова — скопируется в буфер
+                    </p>
+
+                    <div class="promo-card-wrapper">
+                        <div class="promo-code-box" id="promoCard">
+                            <span class="promo-code-text blurred" id="promoCode">PR_<span class="promo-highlight">2FN12</span></span>
+                            <div class="copy-hint">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect>
+                                    <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path>
+                                </svg>
+                                <span class="copy-text">Скопировать</span>
+                            </div>
+                        </div>
+                        
+                        <button class="reveal-btn" id="revealBtn">
+                            <i class="fas fa-gift"></i>
+                            Получить промокод
+                        </button>
+                    </div>
+
+                    <div class="promo-stats-grid">
+                        <div class="stat-box">
+                            <div class="stat-label">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="9" cy="7" r="4"></circle>
+                                    <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                </svg>
+                                Активаций
+                            </div>
+                            <div class="stat-value">Осталось<span class="stat-max"> 500+</span></div>
+                        </div>
+
+                        <div class="stat-box">
+                            <div class="stat-label">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                Следующий промо
+                            </div>
+                            <div class="stat-value timer-display" id="timer">
+                                <span id="hours">00</span>:<span id="minutes">00</span>:<span id="seconds">00</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="promo-note">
+                        Промокоды обновляются еженедельно. Активируй в игровом профиле.
+                    </p>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="notification" class="notification-toast">
         <i class="fas fa-check-circle"></i>
         <span id="notification-text">Промокод скопирован!</span>
     </div>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container">
-            <div class="hero-content">
-                <h1 class="glitch" data-text="StandMel">StandMel</h1>
-                <p class="subtitle">Приватный сервер Standoff 2</p>
-                <p class="description">Уникальный игровой опыт с эксклюзивными возможностями</p>
-                
-                <div class="download-buttons">
-                    <a href="https://drive.usercontent.google.com/download?id=1nPJ8FJ2-Pw7stzooZBdgqYljXWlqZ99-&export=download&authuser=0" class="download-btn ios">
-                        <i class="fab fa-apple"></i>
-                        <div class="btn-text">
-                            <span class="small">Скачать для</span>
-                            <span class="large">iOS</span>
-                        </div>
-                    </a>
-                    <a href="https://drive.usercontent.google.com/download?id=1fZenSq6w1PPG-HyScid8FT-T_GC_up3_&export=download&authuser=0" class="download-btn android">
-                        <i class="fab fa-android"></i>
-                        <div class="btn-text">
-                            <span class="small">Скачать для</span>
-                            <span class="large">Android</span>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="social-links">
-                    <p class="social-title">Наши соцсети</p>
-                    <a href="https://t.me/StandMel" target="_blank" class="social-btn telegram">
-                        <i class="fab fa-telegram"></i>
-                        <span>Telegram</span>
-                    </a>
-                </div>
-
-                <div class="scroll-indicator">
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Donate Section -->
-    <section class="donate-section" id="donate">
-        <div class="container">
-            <h2 class="section-title">Донат</h2>
-            <p class="section-subtitle">Поддержите развитие сервера</p>
-            
-            <div class="donate-container">
-                <div class="donate-card">
-                    <div class="donate-icon">
-                        <i class="fas fa-heart"></i>
-                    </div>
-                    <h3 class="donate-card-title">Купить донат</h3>
-                    <p class="donate-description">Купить донат вы можете в нашем Телеграм Боте</p>
-                    <a href="https://t.me/melowpaybot" target="_blank" class="donate-btn">
-                        <i class="fab fa-telegram"></i>
-                        <span>Перейти в бот</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Daily Promo Section -->
-    <section class="promo-section" id="promo">
-        <div class="container">
-            <h2 class="section-title">Ежедневный промокод</h2>
-            <p class="section-subtitle">Получай бонусы каждый день!</p>
-            
-            <div class="promo-container">
-                <div class="moscow-time-indicator">
-                    <i class="fas fa-clock"></i>
-                    <span>Работает по московскому времени (UTC+3)</span>
-                </div>
-                
-                <div class="timer-container">
-                    <div class="timer-label">Следующий промокод через:</div>
-                    <div class="timer" id="timer">
-                        <div class="timer-block">
-                            <span id="hours">00</span>
-                            <span class="timer-label-small">часов</span>
-                        </div>
-                        <div class="timer-separator">:</div>
-                        <div class="timer-block">
-                            <span id="minutes">00</span>
-                            <span class="timer-label-small">минут</span>
-                        </div>
-                        <div class="timer-separator">:</div>
-                        <div class="timer-block">
-                            <span id="seconds">00</span>
-                            <span class="timer-label-small">секунд</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="promo-card" id="promoCard">
-                    <div class="promo-label">Промокод дня</div>
-                    <div class="promo-code-wrapper">
-                        <div class="promo-code blurred" id="promoCode">
-                            XXXXXXXXXXXX
-                        </div>
-                    </div>
-                    <button class="reveal-btn" id="revealBtn">
-                        <i class="fas fa-gift"></i>
-                        Получить промокод
-                    </button>
-                    <div class="promo-hint">Нажми, чтобы скопировать</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="script.js"></script>
 </body>
 </html>
